@@ -33,6 +33,7 @@ class Family{
         for member in members {
             if (member.age > 21) {
                 members.append(Person(firstName: "newBaby", lastName: member.lastName, age: 0, spouse: nil, job: nil))
+                print("A new baby has joined this family.")
                 break
             }else {
                 print("This family is illegal to have child.")
