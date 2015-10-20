@@ -10,7 +10,7 @@ import Foundation
 
 
 
-class Job {
+class Job : CustomStringConvertible {
     
     enum SalaryType {
         case perHour
@@ -44,4 +44,9 @@ class Job {
         let newSalary = salary * (percent/100) + salary
         return newSalary
     }
+    
+    var description : String {
+        return ("\(self.title) $\(self.salary) \(self.salaryType)" )
+    }
+
 }

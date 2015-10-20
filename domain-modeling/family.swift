@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Family{
+class Family : CustomStringConvertible{
     var members : [Person]
     
     init (members: [Person]) {
@@ -40,5 +40,15 @@ class Family{
             }
         }
        
+    }
+    
+    var description : String {
+        var list : String = ""
+        for (var i = 0; i < newFamily.members.count; i++) {
+            let name = newFamily.members[i].firstName + " " + newFamily.members[i].lastName
+            list += ("\(i+1). \(name) ")
+            
+        }
+        return list
     }
 }

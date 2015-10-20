@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Person {
+class Person : CustomStringConvertible {
     let firstName : String
     let lastName : String
     let age : Int
@@ -44,4 +44,17 @@ class Person {
         
     }
     
+    var description : String {
+        if(self.job != nil && self.spouse != nil){
+            return ("\(self.firstName) \(self.lastName) \(self.age) \(self.spouse!) \(self.job!.description)" )
+        }else if (self.job == nil && self.spouse != nil){
+            return ("\(self.firstName) \(self.lastName) \(self.age) \(self.spouse!) NoJob" )
+        }else if (self.job != nil && self.spouse == nil) {
+            return ("\(self.firstName) \(self.lastName) \(self.age) NoSpouse \(self.job!.description)" )
+        }else {
+            return ("\(self.firstName) \(self.lastName) \(self.age) NoSpouse NoJob" )
+        }
+        
+        
+    }
 }

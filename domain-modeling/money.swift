@@ -8,9 +8,15 @@
 
 import Foundation
 
-struct Money {
+protocol Mathematics {
+    func addMoney(incoming: Money) -> Money
+    func subMoney(incoming: Money) -> Money
+}
+
+struct Money: CustomStringConvertible, Mathematics{
     var currency : String
     var amount : Double
+    
     
     // coverts current currency to the given currency type
     func convertTo(targetCurrency: String) -> Money{
@@ -70,6 +76,8 @@ struct Money {
     
     // coverts the given Money to current currency and returns the sum
     func add(incoming: Money) -> Money{
+        
+        
         var total = Money(currency: self.currency, amount: self.amount)
         let coveredIncoming = incoming.convertTo(self.currency)
         total.amount = self.amount + coveredIncoming.amount
@@ -85,5 +93,26 @@ struct Money {
         
         return total
     }
+    
+    var description : String {
+        return ("\(self.currency) $\(self.amount)")
+    }
+    
+    
+    // protool methods
+    func addMoney(incoming: Money) -> Money {
+        if(self.currency != incoming.currency) {
+            incoming.convertTo(self.currency)
+        }
+        return Money(currency: self.currency, amount: self.amount + incoming.amount)
+    }
+    
+    func subMoney(incoming: Money) -> Money {
+        if(self.currency != incoming.currency) {
+            incoming.convertTo(self.currency)
+        }
+        return Money(currency: self.currency, amount: self.amount - incoming.amount)
+    }
+    
     
 }
